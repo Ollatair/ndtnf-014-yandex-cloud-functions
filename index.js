@@ -11,24 +11,9 @@ app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-try {
-    mongoose.connect(DB_URL, {
-        useNewUrlParser: true,
-      });  
-    const promises = defaultList.map(async (char) => {
-      const existingChar = await Character.findOne({ id: char.id });
-      if (!existingChar) {
-        await Character.create(char);
-        console.log(`Character "${char.name}" успешно добавлена в базу данных`);
-      } else {
-        console.log(`Character "${char.name}" уже существует в базе данных`);
-      }
-    });
-
-     Promise.all(promises);
-  } catch (error) {
-    console.error('Ошибка при добавлении книг:', error);
-  }
+mongoose.connect(DB_URL)
+  .then(() => console.log('mongo ok'))
+  .catch((error) => console.error('mongo error', error));
 
 
 
