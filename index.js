@@ -2,8 +2,7 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const mongoose = require('mongoose');
-const Character = require('./character');
-const defaultList = require('./constants');
+const Character = require('./character'); 
 
 const DB_URL = process.env.DB_URL || 'localhost';
 
